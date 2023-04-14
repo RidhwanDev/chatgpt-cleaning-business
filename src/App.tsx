@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// src/App.tsx
+import React, { useState } from "react";
+import Header from "./components/Header";
+import BookingForm from "./components/BookingForm";
+import LocationInfo from "./components/LocationInfo";
+import "./App.css";
+import HowItWorks from "./components/HowItWorks";
+import AboutUs from "./components/AboutUs";
+import Footer from "./components/Footer";
 
-function App() {
+const App: React.FC = () => {
+  const [selectedLocation, setSelectedLocation] = useState<{
+    address: string;
+    latLng: { lat: number; lng: number };
+  } | null>(null);
+
+  const scrollToSection = (section: string) => {
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleLocationSelect = (
+    address: string,
+    latLng: { lat: number; lng: number }
+  ) => {
+    setSelectedLocation({ address, latLng });
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header scrollToSection={scrollToSection} />
+      <section
+        id="booking"
+        className="bg-blue-200 min-h-screen flex items-center justify-center"
+      >
+        <div className="w-full max-w-2xl px-4">
+          <BookingForm onLocationSelect={handleLocationSelect} />
+          {selectedLocation && <LocationInfo location={selectedLocation} />}
+        </div>
+      </section>
+      <HowItWorks />
+      <AboutUs />
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;

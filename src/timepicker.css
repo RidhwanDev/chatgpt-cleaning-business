@@ -1,0 +1,40 @@
+/* src/timepicker.css */
+.time-picker {
+  display: flex;
+  width: 100%;
+  height: 2.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.25rem;
+}
+
+.time-picker__inputGroup {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.time-picker__inputGroup__divider {
+  display: none;
+}
+
+.time-picker__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #edf2f7;
+  border: none;
+  cursor: pointer;
+}
+
+.time-picker__inputGroup__input {
+  flex: 1;
+  height: 100%;
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  border: none;
+  background-color: #ffffff;
+  outline: none;
+}
